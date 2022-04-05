@@ -6,11 +6,10 @@ function* fetchUsers() {
     try {
         const users = yield call(getUser);
         if (users && users.length > 0) {
-            yield put({ type: actionTypes.GET_USERS_SUCCESS, users: users });
+            yield put({ type: actionTypes.GET_USERS_SUCCESS, data: users });
         } else { 
             yield put({ type: actionTypes.GET_USERS_FAILED, error: true });
         }
-        
     } catch (e) { 
         yield put({ type: actionTypes.GET_USERS_FAILED, error: true });
     }

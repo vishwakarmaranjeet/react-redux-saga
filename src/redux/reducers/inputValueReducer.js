@@ -8,6 +8,9 @@ const inputValueReducer = (state = initialState, action) => {
     switch (action.type) { 
         case actionTypes.UPDATE_INPUT_VALUE:
             return { ...state, inputValue:action.payload }
+            // return Object.assign({}, state, {
+            //     inputValue:action.payload
+            // })
         default :
             return state
     }

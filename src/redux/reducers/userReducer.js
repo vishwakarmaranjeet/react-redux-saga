@@ -16,7 +16,7 @@ const userReducer = (state= initialState, action) => {
         case actionTypes.GET_USERS_SUCCESS:
             return {
                 ...state,
-                data: action.users,
+                data: action.data,
                 loading:false,
             }
         case actionTypes.GET_USERS_FAILED:
