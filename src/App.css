@@ -1,87 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Noto Sans', sans-serif;
-}
-h1,h2,h3,h4,h5,h6,p{
-  margin: 0;
-  padding: 0;
-}
 .wrapper{
-  width: 90%;
-  max-width: 1440px;
-  margin: 50px auto;
+  width: 80%;
+  margin: 40px auto;
 }
-.card_container{
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-}
-.card{
-  display: flex;
-  flex-direction: column;
-  background-color: #fff;
-  border: 1px solid #eee;
-  border-radius:5px;
-  -webkit-border-radius:5px;
-  -moz-border-radius:5px;
-  -o-border-radius:5px;
-  box-shadow: 0 0 4px #eee;
-  width: 21.555%;
-  padding: 15px;
-}
-.card .name{
-  font-weight: 700;
-  font-size: 1.5em;
-  color: #000;
-  padding: 0;
-  margin: 0;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
-}
-.card .email, .card .phone, .card .website{
-  width: 100%;
-  font-weight: 500;
-  font-size: 0.9em;
-  padding-top: 10px;
-  color: #ccc;
-  text-transform: lowercase;
-}
-.flex_row{
-  display: flex;
-}
-.input_container{
-  margin-bottom: 40px;
-}
-.input_container input + input{
-  margin-left: 12px;
-}
-input[type='text']{
-  border: 1px solid #eee;
-  padding: 12px 20px;
-  border-radius: 4px;
-  font-family: inherit;
-}
-input[type='text']:focus{
-  outline: none;
-}
+
 @media(max-width:768px){
   .wrapper{
-    width: 90%;
-    max-width: 90%;
-    margin: 20px auto;
-  }
-  .card{
     width: 100%;
-  }
-  input[type='text']{
-    width: 100%;
-    max-width: 320px;
-  }
-  .input_container input + input{
-    margin-left: 0;
-    margin-top: 12px;
+    padding: 0 12px;
   }
 }

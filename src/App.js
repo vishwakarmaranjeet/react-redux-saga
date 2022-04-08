@@ -1,8 +1,10 @@
 import React, { useEffect, useState} from 'react';
-import './App.css';
 import { useDispatch, useSelector } from 'react-redux';
 import * as actionCreator from './redux/actions';
 import InputText from './components/InputText';
+// import DisplayDetails from './Context/DisplayDetails';
+// import UserDetails from './Context/UserDetails';
+
 // import DisplayCounter from './components/DisplayCounter';
 
 function App() {
@@ -32,21 +34,40 @@ function App() {
   }, [dispatch])
 
   // useEffect(() => { 
-  //   let interval = setInterval(() => { 
+  //   let interval = setInterval(() => {
   //     setCounter(counter + 1);
   //   }, 1000)
-  //   return () => { 
+  //   return () => {
   //     clearInterval(interval);
   //   }
   // })
 
-  // const inputChangeHandler = (e) => { 
+  // const inputChangeHandler = (e) => {
   //   dispatch(actionCreator.updateInputValue(e));
   // }
+
+  const renderList = (user) => { 
+    return (
+      <>
+        <div className="w-full lg:w-64 block p-6 bg-white rounded-md border border-gray-200 shadow-md hover:bg-gray-100 dark:hover:bg-gray-100 lg:mr-3 mt-3">
+          <h5 className="text-gray-900 text-xl leading-tight font-medium mb-2 truncate">{user.name}</h5>
+          <p className="text-gray-700 text-base mb-4">{user.emai}</p>
+          <p className="text-gray-700 text-base">{user.phone}</p>
+          <p className="text-gray-700 text-base">{user.website}</p>
+        </div>
+      </>
+    )
+  }
 
   return (
     <main>
       <section className="wrapper">
+     
+        {/* Context API uses */}
+        {/* <UserDetails>
+          <DisplayDetails/>
+        </UserDetails> */}
+        {/* Context API uses */}
         {/* <DisplayCounter /> */}
         {/* <h3>Input Value : {value}</h3>*/}
         <section className='flex_row'>
@@ -56,23 +77,15 @@ function App() {
           </section>
         </section>
         <section className='card_container'>
+        <div className="flex flex-wrap justify-items-stretch">
           {isError && <h2>Error has occured</h2>}
-          {isLoading && <h2>Loading...</h2>}
-          {searchInput.length > 0 ? filteredResults.map((user) => (
-           <article className='card' key={user.id}>
-            <p className='name'>{user.name}</p>
-            <p className='email'>{user.email}</p>
-            <p className='phone'>{user.phone}</p>
-            <p className='website'>{user.website}</p>
-          </article>
-          )) : users && users.length > 0 && users.map((user) => (
-            <article className='card' key={user.id}>
-              <p className='name'>{user.name}</p>
-              <p className='email'>{user.email}</p>
-              <p className='phone'>{user.phone}</p>
-              <p className='website'>{user.website}</p>
-            </article>
-          ))}
+          {isLoading &&  <p>Loading please wait...</p>}
+            {searchInput.length > 0 ? filteredResults.map((user) => {
+              return renderList(user)
+            }) : users && users.length > 0 && users.map((user) => {
+              return renderList(user)
+            })}
+            </div>
       </section>
       </section>
       </main>
