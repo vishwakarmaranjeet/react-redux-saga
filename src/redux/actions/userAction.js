@@ -5,3 +5,4 @@ export function getUsers() {
         type: actionTypes.GET_USERS_REQUESTED,
     }
 }
+
