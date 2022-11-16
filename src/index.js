@@ -1,17 +1,25 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
-import configureStore from './redux/store/configureStore';
-import App from './App';
-import './App.css';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom";
+import TagManager from "react-gtm-module";
+import { Provider } from "react-redux";
+import configureStore from "./redux/store/configureStore";
+import App from "./App";
+import "./App.css";
+import reportWebVitals from "./reportWebVitals";
+
 const store = configureStore();
+const tagManagerArgs = {
+  gtmId: "GTM-MVKQLR6",
+};
+TagManager.initialize(tagManagerArgs);
 
 ReactDOM.render(
   <React.StrictMode>
-    <Provider store={store}><App /></Provider>
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
 
 // If you want to start measuring performance in your app, pass a function

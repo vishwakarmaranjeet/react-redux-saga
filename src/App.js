@@ -49,10 +49,24 @@ function App() {
   //   dispatch(actionCreator.updateInputValue(e));
   // }
 
+  const accessbilityHandler = () => {
+    console.log("Great it's working...");
+  };
+
+  const onKeyDownAccess = (event) => {
+    if (event.key === "Enter" || event.key === " ") {
+      console.log("Entered");
+    }
+  };
   const renderList = (user) => {
     return (
       <>
-        <div className="w-full lg:w-64 block p-6 bg-white rounded-md border border-gray-200 shadow-md hover:bg-gray-100 dark:hover:bg-gray-100 lg:mr-3 mt-3">
+        <div
+          className="outline-neutral-900 w-full lg:w-64 block p-6 bg-white rounded-md border border-gray-200 shadow-md hover:bg-gray-100 dark:hover:bg-gray-100 lg:mr-3 mt-3"
+          tabIndex={0}
+          onClick={accessbilityHandler}
+          onKeyDown={onKeyDownAccess}
+        >
           <h5 className="text-gray-900 text-xl leading-tight font-medium mb-2 truncate">
             {user.name}
           </h5>
