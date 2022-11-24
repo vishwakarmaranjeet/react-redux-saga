@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import TagManager from "react-gtm-module";
+// import TagManager from "react-gtm-module";
+import ReactGA from "react-ga4";
 import { Provider } from "react-redux";
 import configureStore from "./redux/store/configureStore";
 import App from "./App";
@@ -8,10 +9,14 @@ import "./App.css";
 import reportWebVitals from "./reportWebVitals";
 
 const store = configureStore();
-const tagManagerArgs = {
-  gtmId: "GTM-MVKQLR6",
-};
-TagManager.initialize(tagManagerArgs);
+
+// const tagManagerArgs = {
+//   gtmId: "GTM-MVKQLR6",
+// };
+
+// TagManager.initialize(tagManagerArgs);
+
+ReactGA.initialize("G-CE5Q8X5Z6N");
 
 ReactDOM.render(
   <React.StrictMode>
