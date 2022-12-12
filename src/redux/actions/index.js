@@ -1,2 +1,2 @@
-export { getUsers } from './userAction';
-export { updateInputValue } from './inputAction';
+export { getUsers, searchUsers, clearUserSearched } from "./userAction";
+export { updateInputValue } from "./inputAction";

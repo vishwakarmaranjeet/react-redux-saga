@@ -4,36 +4,41 @@ import * as actionCreator from "./redux/actions";
 import InputText from "./components/InputText";
 // import DisplayDetails from './Context/DisplayDetails';
 // import UserDetails from './Context/UserDetails';
-
 // import DisplayCounter from './components/DisplayCounter';
 
 function App() {
   const dispatch = useDispatch();
-  const users = useSelector((state) => state.user.data);
-  const isLoading = useSelector((state) => state.user.loading);
-  const isError = useSelector((state) => state.user.error);
+  const userReducer = useSelector((state) => state.userReducer.data);
+  const isLoading = useSelector((state) => state.userReducer.loading);
+  const isError = useSelector((state) => state.userReducer.error);
   const value = useSelector((state) => state.inputValue.inputValue);
+  const searchUsersReducer = useSelector(
+    (state) => state.searchUserReducer.allSearchUsers
+  );
+  const noResultReducer = useSelector((state) => state.searchUserReducer.error);
   const [searchInput, setSearchInput] = useState("");
-  const [filteredResults, setFilteredResults] = useState(users);
+  // const [filteredResults, setFilteredResults] = useState(users);
   //const [counter, setCounter] = useState(0);
 
   const searchItems = (searchValue) => {
     setSearchInput(searchValue);
-    if (searchInput !== "") {
-      const filteredData = users.filter((item) => {
-        return Object.values(item)
-          .join("")
-          .toLowerCase()
-          .includes(searchInput.toLowerCase());
-      });
-      setFilteredResults(filteredData);
-    } else {
-      setFilteredResults(users);
-    }
+    dispatch(actionCreator.searchUsers(userReducer, searchInput));
+    // if (searchInput !== "") {
+    //   const filteredData = users.filter((item) => {
+    //     return Object.values(item)
+    //       .join("")
+    //       .toLowerCase()
+    //       .includes(searchInput.toLowerCase());
+    //   });
+    //   setFilteredResults(filteredData);
+    // } else {
+    //   setFilteredResults(users);
+    // }
   };
 
   useEffect(() => {
     dispatch(actionCreator.getUsers());
+    dispatch(actionCreator.clearUserSearched());
   }, [dispatch]);
 
   // useEffect(() => {
@@ -103,17 +108,17 @@ function App() {
             {isError && <h2>Error has occured</h2>}
             {isLoading && <p>Loading please wait...</p>}
             {searchInput.length > 0 ? (
-              filteredResults.length > 0 ? (
-                filteredResults.map((user) => {
+              searchUsersReducer.length > 0 ? (
+                searchUsersReducer.map((user) => {
                   return renderList(user);
                 })
               ) : (
-                <div>No Record Found!</div>
+                <div>{noResultReducer}</div>
               )
             ) : (
-              users &&
-              users.length > 0 &&
-              users.map((user) => {
+              userReducer &&
+              userReducer.length > 0 &&
+              userReducer.map((user) => {
                 return renderList(user);
               })
             )}

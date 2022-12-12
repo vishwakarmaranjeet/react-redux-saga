@@ -6,7 +6,7 @@ const initialState = {
   error: null,
 };
 
-const userReducer = (state = initialState, action) => {
+export const userReducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.GET_USERS_REQUESTED:
       return {
@@ -29,4 +29,29 @@ const userReducer = (state = initialState, action) => {
       return state;
   }
 };
-export default userReducer;
+
+const initialSearchState = {
+  loading: true,
+  allSearchUsers: [],
+  error: null,
+};
+
+export const searchUserReducer = (state = initialSearchState, action) => {
+  switch (action.type) {
+    case actionTypes.CLEAR_USER_SEARCH:
+      return { ...state, loading: false };
+    case actionTypes.USER_SEARCH_REQUEST:
+      return { ...state, loading: true };
+    case actionTypes.USER_SEARCH_SUCCESS:
+      return { ...state, loading: false, allSearchUsers: action.data };
+    case actionTypes.USER_SEARCH_FAIL:
+      return {
+        ...state,
+        allSearchUsers: [],
+        loading: false,
+        error: action.error,
+      };
+    default:
+      return state;
+  }
+};
