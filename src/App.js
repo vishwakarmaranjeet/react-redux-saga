@@ -63,23 +63,23 @@ function App() {
       console.log("Entered");
     }
   };
-  const renderList = (user) => {
+
+  const renderUserList = (user) => {
     return (
-      <>
-        <div
-          className="outline-neutral-900 w-full lg:w-64 block p-6 bg-white rounded-md border border-gray-200 shadow-md hover:bg-gray-100 dark:hover:bg-gray-100 lg:mr-3 mt-3"
-          tabIndex={0}
-          onClick={accessbilityHandler}
-          onKeyDown={onKeyDownAccess}
-        >
-          <h5 className="text-gray-900 text-xl leading-tight font-medium mb-2 truncate">
-            {user.name}
-          </h5>
-          <p className="text-gray-700 text-base mb-4">{user.emai}</p>
-          <p className="text-gray-700 text-base">{user.phone}</p>
-          <p className="text-gray-700 text-base">{user.website}</p>
-        </div>
-      </>
+      <div
+        key={user.id}
+        className="outline-neutral-900 w-full lg:w-64 block p-6 bg-white rounded-md border border-gray-200 shadow-md hover:bg-gray-100 dark:hover:bg-gray-100 lg:mr-3 mt-3"
+        tabIndex={0}
+        onClick={accessbilityHandler}
+        onKeyDown={onKeyDownAccess}
+      >
+        <h5 className="text-gray-900 text-xl leading-tight font-medium mb-2 truncate">
+          {user.name}
+        </h5>
+        <p className="text-gray-700 text-base mb-4">{user.emai}</p>
+        <p className="text-gray-700 text-base">{user.phone}</p>
+        <p className="text-gray-700 text-base">{user.website}</p>
+      </div>
     );
   };
   return (
@@ -94,7 +94,6 @@ function App() {
         {/* <h3>Input Value : {value}</h3>*/}
         <section className="flex_row">
           <section className="input_container">
-            {/* <InputText type="text" placeholderText='Enter city name' value={value} onChange={(e) => { inputChangeHandler(e) }} /> */}
             <InputText
               type="text"
               placeholderText="Search by Name"
@@ -109,18 +108,14 @@ function App() {
             {isLoading && <p>Loading please wait...</p>}
             {searchInput.length > 0 ? (
               searchUsersReducer.length > 0 ? (
-                searchUsersReducer.map((user) => {
-                  return renderList(user);
-                })
+                searchUsersReducer.map((user) => renderUserList(user))
               ) : (
                 <div>{noResultReducer}</div>
               )
             ) : (
               userReducer &&
               userReducer.length > 0 &&
-              userReducer.map((user) => {
-                return renderList(user);
-              })
+              userReducer.map((user) => renderUserList(user))
             )}
           </div>
         </section>
