@@ -1,0 +1,28 @@
+1. State: 
+In redux, the state is a centralised object tree containing the information used by the application. The only way to modify the state is by dispatching actions.
+
+2. Actions:
+Actions are objects that contain information about what reducer to call and also contains the payload that is used by the reducer. 
+Actions are the only source of information to the store and carry the payload from the application to the store.
+
+3. Reducers:
+Actions only tell what to do (which reducer to call) and the reducers take the currect state and payload and make changes to the state.
+
+4. Sagas Workers:
+Sagas/Workers are the side-effects we want to run when a particular action is dispatched. These are generator functions that run some asynchronous login like API calls, I/O Operations etc.
+
+e.g
+function* watchLoginRequest() {
+    while (true) {
+        const action = yield take(getType(employeeActions.login.request))
+        yield call(handleLoginRequest, action)
+    }
+}
+
+5. Sagas Watchers:
+Watchers watch for action dispatch and fork a saga/worker on that action. Watchers make use of effect creators which tell the watcher when to fork the saga.
+
+e.g
+function* watchLoginRequest() {
+    yield takeEvery(getType(employeeActions.login.request), handleLoginRequest)
+}
