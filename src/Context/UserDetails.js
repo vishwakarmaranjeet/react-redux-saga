@@ -4,14 +4,6 @@ const UserData = createContext(); // Create context
 
 const UserDetails = (props) => {
     const [users, setUsers] = useState({ name: 'Ranjeet', location: 'Mumbai' })
-    // useEffect(() => { 
-    //     setTimeout(() => { 
-    //         setUsers({
-    //             name: 'Ranjeet',
-    //             location:'Banglore'
-    //         })
-    //     },1000)
-    // }, [])
     const updateDetails = () => { 
         setTimeout(() => { 
             setUsers({
